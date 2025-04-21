@@ -1,0 +1,5 @@
+CLASS zbp_i_trav_root_proj DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zc_trav_proc.
+ENDCLASS.
+
+CLASS zbp_i_trav_root_proj IMPLEMENTATION.
+ENDCLASS.

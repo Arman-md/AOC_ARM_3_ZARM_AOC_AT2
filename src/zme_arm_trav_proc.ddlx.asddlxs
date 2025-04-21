@@ -1,0 +1,166 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+            typeName: 'Travel',
+            typeNamePlural: 'Travels',
+            title: { value: 'TravelId' },
+            description: { value: '_customer.FirstName' }
+//            imageUrl: ''
+          //  'https://thumbs.dreamstime.com/z/travel-logo-design-agency-vector-inspiration-template-218267333.jpg'
+            }
+
+
+annotate entity ZC_TRAV_PROC with
+{
+
+  @UI.facet: [
+  {
+  type: #DATAPOINT_REFERENCE,
+  purpose: #HEADER,
+  label  : 'Flight Ticket Price',
+  position : 10,
+  targetQualifier: 'price_data'   // this scans the entire entity for another qualifier to bring it together to data point
+    },
+    {
+    purpose: #HEADER,
+    type: #DATAPOINT_REFERENCE,
+    label: 'Status',
+    position: 20,
+    targetQualifier: 'status'
+    },
+    {
+    purpose: #STANDARD,
+    type :#COLLECTION,
+    position: 10,
+    id: 'collection',
+    label: 'Additional Details'
+    },
+    {
+
+    purpose: #STANDARD,
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Additional Info',
+    position: 10,
+    parentId: 'collection'
+    },
+    {
+    purpose: #STANDARD,
+    type: #FIELDGROUP_REFERENCE,// can be manyyyy
+    label: 'price data',
+    position: 20, // because under collection we already have an identification in pos 10.
+    parentId: 'collection',
+    targetQualifier: 'price_data'        // via this, we group all the related price fields
+    },
+
+    {
+    purpose: #STANDARD,
+    type: #FIELDGROUP_REFERENCE,
+    label: 'Travel Dates',
+    position: 30,
+    parentId: 'collection',
+    targetQualifier: 'dates'
+    },
+
+        {
+    purpose: #STANDARD,
+    type: #FIELDGROUP_REFERENCE,
+    label: 'Admin Data',
+    position: 40,
+    parentId: 'collection',
+    targetQualifier: 'admin'
+    },
+
+    {
+    purpose: #STANDARD,
+    type: #LINEITEM_REFERENCE,
+    label: 'Bookings',
+    position: 20,
+    targetElement: '_booking'
+
+    },
+        {
+    purpose: #STANDARD,
+    type: #LINEITEM_REFERENCE,
+    label: 'Attachments',
+    position: 21,
+    targetElement: '_attachment'
+
+    }
+    ]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.lineItem: [{ position: 10 },
+                 { type: #FOR_ACTION,
+                   label: 'copy travel',
+                 //  inline: true,
+                   dataAction: 'copytravel'
+                    }]
+  @UI.identification: [{ position: 10 }]
+  TravelId;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.identification: [{ position: 20 },
+  { type: #FOR_ACTION,
+                   label: 'copy travel data',
+                   dataAction: 'copytravel'
+                    }]
+  AgencyId;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  CustomerId;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.selectionField: [{ position: 40 }]
+  @UI.fieldGroup: [{ qualifier: 'dates', label: 'Begin Date', position: 10 }]
+  BeginDate;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.selectionField: [{ position: 50 }]
+  @UI.fieldGroup: [{ qualifier: 'dates', label: 'End Date', position: 20 }]
+  EndDate;
+
+  @UI.selectionField: [{ position: 60 }]
+  @UI.fieldGroup: [{ qualifier: 'price_data', label: 'Booking Fees', position: 10 }]
+  BookingFee;
+
+  @UI.lineItem: [{ position: 60 }]
+  @UI.selectionField: [{ position: 70 }]
+  @UI.dataPoint: { qualifier: 'price_data', title: 'Flight Price'  }
+  @UI.fieldGroup: [{ qualifier: 'price_data', label: 'Total Price', position: 20 }]
+  TotalPrice;
+
+  @UI.selectionField: [{ position: 80 }]
+  @UI.fieldGroup: [{ qualifier: 'price_data', label: 'Currency', position: 30 }]
+  CurrencyCode;
+
+  @UI.selectionField: [{ position: 90 }]
+  Description;
+
+  @UI.lineItem: [{ position: 70, criticality: 'criticality', importance: #HIGH }]
+  @UI.selectionField: [{ position: 100 }]
+  @UI.dataPoint: { title: 'Travel Status', qualifier: 'status', criticality: 'criticality' }
+  @UI.fieldGroup: [{ qualifier: 'dates', label: 'Status', position: 30 }]
+  OverallStatus;
+  //   statustext;
+  @UI.fieldGroup: [{ qualifier: 'admin', label: 'Created By', position: 10 }]
+  CreatedBy;
+
+  @UI.fieldGroup: [{ qualifier: 'admin', label: 'Created at', position: 20 }]
+  CreatedAt;
+
+  @UI.fieldGroup: [{ qualifier: 'admin', label: 'Changed By', position: 30 }]
+  LastChangedBy;
+
+  @UI.fieldGroup: [{ qualifier: 'admin', label: 'Changed at', position: 40 }]
+  LastChangedAt;
+  
+  
+    @UI.lineItem: [{ position: 80}]
+    @EndUserText.label: 'CO2 Tax rate'
+  co2tax;
+  
+  
+  @UI.lineItem: [{ position: 80}]
+  flightday;
+}

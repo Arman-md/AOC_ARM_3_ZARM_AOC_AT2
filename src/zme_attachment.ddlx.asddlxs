@@ -1,0 +1,65 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo: {
+typeName: 'Attachment' ,
+typeNamePlural: 'Attachments',
+title: { value: 'Id' },
+description: { value: 'Memo' }
+//imageUrl: 'https://thumbs.dreamstime.com/z/travel-logo-design-agency-vector-inspiration-template-218267333.jpg'
+
+}
+
+annotate entity ZC_TRAV_ATTACH_PROC with
+{
+
+  @UI.facet: [
+  {
+  purpose: #STANDARD,
+  type  : #IDENTIFICATION_REFERENCE,
+  label: 'Attachment info',
+  position: 10
+   }
+   ]
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  Id;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  TravelId;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+
+  Filename;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  Filetype;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  Attachment;
+
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 60 }]
+  Memo;
+
+  @UI.lineItem: [{ position: 70 }]
+  @UI.identification: [{ position: 70 }]
+  LocalCreatedBy;
+  // CurrencyCode;
+
+  @UI.lineItem: [{ position: 80 }]
+  @UI.identification: [{ position: 80 }]
+  LocalCreatedAt;
+  // LastChangedAt;
+  /* Associations */
+  //  _bookingstatus;
+  //  _bookingsuppl;
+  //  _carrier;
+  //  _connection;
+  //  _customer;
+  //  _travel;
+
+}

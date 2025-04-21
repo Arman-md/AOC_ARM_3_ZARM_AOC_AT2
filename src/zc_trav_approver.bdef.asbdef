@@ -1,0 +1,34 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_TRAV_APPROVER alias travel
+{
+  //  use create; approver shouldn't
+  use update;
+//  use delete;
+
+  field ( readonly ) TravelId, AgencyId, CustomerId, BeginDate, EndDate,
+  TotalPrice, CurrencyCode, Description, BookingFee;
+
+  //  use action validatecustomer;
+  //  use action copytravel; approver shouldn't
+  use action acceptTravel;
+  use action rejectTravel;
+
+  use action Prepare;
+  use action Edit;
+  use action Resume;
+  use action Activate;
+  use action Discard;
+
+  use association _booking;// { with draft; }
+}
+
+define behavior for ZC_BOOKING_APPROVER alias booking
+{
+  //  use update;
+  //  use delete;
+
+  use association _travel { with draft; }
+}

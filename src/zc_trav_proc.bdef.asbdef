@@ -1,0 +1,50 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_TRAV_PROC alias travel
+
+// create a new class for processor behaviour projection implementation
+implementation in class zbp_i_trav_root_proj unique
+{
+
+  use create ( augment, precheck );
+  use update ( precheck );
+  use delete;
+
+  use action Prepare;
+  use action Edit;
+  use action Discard;
+  use action Resume;
+  use action Activate;
+
+  use action copytravel;
+  use association _booking { create; with draft; }
+  use association _attachment { create; with draft; }
+}
+
+define behavior for ZC_BOOKING_PROC alias booking
+{
+  use update;
+  use delete;
+
+  use association _Travel { with draft; }
+  use association _bookingsuppl { create; with draft; }
+}
+
+define behavior for ZC_BOOK_SUPPL_PROC alias booking_suppl
+{
+  use update;
+  use delete;
+
+  use association _travel { with draft; }
+  use association _booking { with draft; }
+}
+
+define behavior for ZC_TRAV_ATTACH_PROC alias attachment
+{
+  use update;
+  use delete;
+
+  use association _Travel { with draft; }
+}

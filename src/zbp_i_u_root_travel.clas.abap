@@ -1,0 +1,5 @@
+CLASS zbp_i_u_root_travel DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_u_root_travel.
+ENDCLASS.
+
+CLASS zbp_i_u_root_travel IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,9 @@
+@EndUserText.label: 'Unamanaged Trav SD'
+define service ZSD_U_V2_TRAV {
+  expose ZI_U_ROOT_TRAVEL        as Trvael;
+  expose ZI_U_AGENCY             as Agency;
+  expose ZI_U_CUSTOMER           as Customer;
+  expose I_Country               as Country;
+  expose I_Currency              as Currency;
+  expose /DMO/I_Travel_Status_VH as TravelStatus;
+}

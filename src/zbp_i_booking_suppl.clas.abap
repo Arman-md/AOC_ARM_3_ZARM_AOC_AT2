@@ -1,0 +1,5 @@
+CLASS zbp_i_booking_suppl DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_trav_root.
+ENDCLASS.
+
+CLASS zbp_i_booking_suppl IMPLEMENTATION.
+ENDCLASS.
